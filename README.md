@@ -1,2 +1,3 @@
 # usaco-silver
-Solutions for some USACO silver problems
+
+Practicing USACO silver problems. Follows the structure of the USACO guide: https://usaco.guide/silver
