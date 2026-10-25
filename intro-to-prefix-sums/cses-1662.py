@@ -1,14 +1,15 @@
 import math
-from collections import defaultdict
 
 n = int(input())
 a = map(int, input().split())
 
-prefix = [0]
-mod_map = defaultdict(list[int])
+val = 0
+singles = 0
+mod_map = [0] * n
 for idx, num in enumerate(a, 1):
-    val = (prefix[idx - 1] + num) % n
-    prefix.append(val)
-    mod_map[val].append(idx)
+    val = (val + num) % n
+    if val == 0:
+        singles += 1
+    mod_map[val] += 1
 
-print(sum(math.comb(len(x), 2) for x in mod_map.values()) + prefix.count(0) - 1)
+print(sum(math.comb(x, 2) for x in mod_map) + singles)
