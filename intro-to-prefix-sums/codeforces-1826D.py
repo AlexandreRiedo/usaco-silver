@@ -1,14 +1,15 @@
-from itertools import islice
-
 for _ in range(int(input())):
     n = int(input())
     b = list(map(int, input().split()))
 
     ans = 0
     for l in range(n - 2):
-        for r in range(l + 3, n + 1):
-            sights = sorted(islice(b, l, r), reverse=True)
-            ans = max(ans, sum(islice(sights, 3)) - (r - 1 - l))
+        curr = sorted((b[l + 0], b[l + 1], b[l + 2]), reverse=True)
+        ans = max(ans, sum(curr) - 2)
+        for r in range(l + 3, n):
+            curr.append(max(curr.pop(), b[r]))
+            curr.sort(reverse=True)
+            ans = max(ans, sum(curr) - (r - l))
     print(ans)
 
 """
