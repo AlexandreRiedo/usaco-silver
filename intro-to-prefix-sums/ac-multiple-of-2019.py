@@ -1,9 +1,4 @@
-from rich import print as rprint
-
 S = input()
-
-multiples = {x * 2019 for x in range(10_000)}
-rprint(f"{multiples=}")
 
 
 """
@@ -38,4 +33,25 @@ rprint(f"{multiples=}")
 2   6   0   5   7
 2   26  260 586 1829
     6   60  605 0
+"""
+
+"""
+CLAUDE's hint:
+Hint 2. Your last four lines already contain the main idea:
+
+1817_00000 % 2019 = 95
+1817_18171 % 2019 = 95
+
+Why are these equal? What is special about 18171? 
+
+Now ask the reverse question: if two numbers have the same residue and one is a “tail” of the other, 
+what does that tell you about the digits in between?
+
+Hint 3. Your prefix approach gets messy because you have to correct by 10^k, 
+and k depends on the substring's length. 
+There are two ways to remove that factor. 
+    One is to read the string in the other direction. 
+    The other is to check whether gcd(10, 2019) lets you drop trailing powers of 10 for free. 
+With either one, the condition “this substring is a multiple of 2019” turns into 
+a simple comparison between two numbers you've already computed, and then you only have to count.
 """
