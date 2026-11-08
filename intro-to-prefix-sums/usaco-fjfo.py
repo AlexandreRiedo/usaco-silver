@@ -1,36 +1,20 @@
 from math import inf
 
-from matplotlib import pyplot as plt
 from rich import print as rprint
 
-# for _ in range(int(input())):
-for _ in range(1):
-    # N, M = map(int, input().split())
-    # arr = [int(x) for x in input().split()]
-
-    import random
-
-    N, M = random.randint(1, 1 * 10**2), random.randint(1, 10**2)
-    arr = [random.randint(1, 2 * 10**2) for _ in range(N)]
+for _ in range(int(input())):
+    N, M = map(int, input().split())
+    arr = [int(x) for x in input().split()]
 
     mod_map = {x: (0 - x) if abs(0 - x) < abs(M - x) else (M - x) for x in range(M)}
 
     ans = inf
-    horiz = []
-    verti = []
     for x in range(M):
         t = [mod_map[(c - x) % M] for c in arr]
         val = sum(abs(c) for c in t)
         ans = min(val, ans)
         rprint(f"{x=}\t{t=}\t{[abs(c) for c in t]}\t{val=}")
-
-        horiz.append(x)
-        verti.append(val)
     rprint(f"{ans=}")
-
-    plt.plot(horiz, verti, "o-")
-    plt.grid(True)
-    plt.show()
 
 """
 import random
