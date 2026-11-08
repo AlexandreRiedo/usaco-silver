@@ -1,20 +1,47 @@
 from math import inf
 
-for _ in range(int(input())):
-    N, M = map(int, input().split())
-    arr = [int(x) for x in input().split()]
+from matplotlib import pyplot as plt
+from rich import print as rprint
+
+# for _ in range(int(input())):
+for _ in range(1):
+    # N, M = map(int, input().split())
+    # arr = [int(x) for x in input().split()]
+
+    import random
+
+    N, M = random.randint(1, 1 * 10**2), random.randint(1, 10**2)
+    arr = [random.randint(1, 2 * 10**2) for _ in range(N)]
 
     mod_map = {x: (0 - x) if abs(0 - x) < abs(M - x) else (M - x) for x in range(M)}
-    # rprint(f"{mod_map=}")
 
     ans = inf
+    horiz = []
+    verti = []
     for x in range(M):
         t = [mod_map[(c - x) % M] for c in arr]
         val = sum(abs(c) for c in t)
         ans = min(val, ans)
-        # rprint(f"{x=}\t{t=}\t{[abs(c) for c in t]}\t{val=}")
-    # rprint(f"{ans=}")
-    print(ans)
+        rprint(f"{x=}\t{t=}\t{[abs(c) for c in t]}\t{val=}")
+
+        horiz.append(x)
+        verti.append(val)
+    rprint(f"{ans=}")
+
+    plt.plot(horiz, verti, "o-")
+    plt.grid(True)
+    plt.show()
+
+"""
+import random
+
+N, M = 5, random.randint(1, 20)
+arr = [random.randint(1, 50) for _ in range(N)]
+
+print(1)
+print(f"{N} {M}")
+print(*arr, sep=" ")
+"""
 
 """
 1
@@ -25,7 +52,6 @@ for _ in range(int(input())):
 3 69
 1 988244353 998244853
 """
-
 
 """
 15 12 18 3 8
